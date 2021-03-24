@@ -6,13 +6,3 @@
 [![CircleCI status](https://circleci.com/gh/lacework/terraform-aws-gcr.svg?style=shield)](https://circleci.com/gh/lacework/terraform-aws-gcr)
 
 A Terraform Module to integrate Google Container Registries (GCR) with Lacework.
-
-## Inputs
-
-| Name | Description | Type | Default | Required |
-|------|-------------|------|---------|----------|
-
-## Outputs
-
-| Name | Description |
-|------|-------------|
