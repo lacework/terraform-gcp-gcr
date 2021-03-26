@@ -28,3 +28,43 @@ variable "prefix" {
   description = "The prefix that will be use at the beginning of every generated resource"
 }
 
+variable "lacework_integration_name" {
+  type    = string
+  default = "TF GCR"
+}
+
+variable "wait_time" {
+  type        = string
+  default     = "10s"
+  description = "Amount of time to wait before the next resource is provisioned."
+}
+
+variable "registry_domain" {
+  type        = string
+  default     = "gcr.io"
+  description = "The GCR domain, which specifies the location where you store the images. Supported domains are gcr.io, us.gcr.io, eu.gcr.io, or asia.gcr.io. Defaults to gcr.io."
+}
+
+variable "limit_by_tag" {
+  type        = string
+  default     = "*"
+  description = "An image tag to limit the assessment of images with matching tag. If you specify limit_by_tag and limit_by_label limits, they function as an AND. Supported field input are mytext*mytext, mytext, mytext*, or mytext. Only one * wildcard is supported. Defaults to *."
+}
+
+variable "limit_by_label" {
+  type        = string
+  default     = "*"
+  description = "An image label to limit the assessment of images with matching label. If you specify limit_by_tag and limit_by_label limits, they function as an AND. Supported field input are mytext*mytext, mytext, mytext*, or mytext. Only one * wildcard is supported. Defaults to *."
+}
+
+variable "limit_by_repos" {
+  type        = string
+  default     = ""
+  description = "A comma-separated list of repositories to assess. This should be defined as a string. (without spaces recommended)"
+}
+
+variable "limit_num_imgs" {
+  type        = string
+  default     = "5"
+  description = "The maximum number of newest container images to assess per repository. Must be one of 5, 10, or 15. Defaults to 5."
+}
