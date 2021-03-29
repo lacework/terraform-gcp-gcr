@@ -7,7 +7,7 @@ variable "project_id" {
 variable "use_existing_service_account" {
   type        = bool
   default     = false
-  description = "Set this to true to use an existing Service Account"
+  description = "Set this to true to use an existing Service Account. When using an existing service account, the required roles must be added manually."
 }
 
 variable "service_account_name" {
@@ -29,8 +29,9 @@ variable "prefix" {
 }
 
 variable "lacework_integration_name" {
-  type    = string
-  default = "TF GCR"
+  type        = string
+  default     = "TF GCR"
+  description = "The integration name displayed in the Lacework UI."
 }
 
 variable "wait_time" {

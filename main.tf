@@ -15,6 +15,7 @@ locals {
     "roles/storage.objectViewer"
   ]
   required_gcr_apis = {
+    resourcemanager   = "cloudresourcemanager.googleapis.com"
     containerregistry = "containerregistry.googleapis.com"
   }
   gcr_roles = local.default_gcr_roles
