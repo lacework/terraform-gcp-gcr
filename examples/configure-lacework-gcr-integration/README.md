@@ -22,10 +22,10 @@ provider "google" {}
 provider "lacework" {}
 
 module "lacework_svc_account" {
-  source  = "lacework/config/gcp"
-  version = "~> 0.1.1"
+  source  = "lacework/gcr/gcp"
+  version = "~> 0.1"
   
-  lacework_integration_name = "Example ECR integration"
+  lacework_integration_name = "Example GCR integration"
   registry_domain           = "us.gcr.io"
   limit_by_tag              = "example*"
   limit_by_label            = "example*"
