@@ -7,8 +7,6 @@
 
 A Terraform Module to integrate Google Container Registries (GCR) with Lacework.
 
-_**Note:** When `use_existing_service_account` is set to true, the required roles must be added to the Service Account manually._
-
 ## Required Roles
 ```
 roles/storage.objectViewer

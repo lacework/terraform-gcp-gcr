@@ -1,6 +1,7 @@
 locals {
-  resource_level = "PROJECT"
+  resource_level       = "PROJECT"
   project_id           = data.google_project.selected.project_id
+  create_iam           = length(data.google_iam_policy.existing_policy) > 0 ? (var.use_existing_service_account ? 0 : 1) : 1
   service_account_name = var.use_existing_service_account ? (
     var.service_account_name
     ) : (
@@ -11,14 +12,10 @@ locals {
     ) : (
     base64decode(module.lacework_gcr_svc_account.private_key)
   ))
-  default_gcr_roles = [
-    "roles/storage.objectViewer"
-  ]
   required_gcr_apis = {
     resourcemanager   = "cloudresourcemanager.googleapis.com"
     containerregistry = "containerregistry.googleapis.com"
   }
-  gcr_roles = local.default_gcr_roles
   gcr_apis  = local.required_gcr_apis
 }
 
@@ -28,6 +25,16 @@ resource "random_id" "uniq" {
 
 data "google_project" "selected" {
   project_id = var.project_id
+}
+
+data "google_iam_policy" "existing_policy" {
+  binding {
+    role = "roles/storage.objectViewer"
+
+    members = [
+      "serviceAccount:${local.service_account_json_key.client_email}",
+    ]
+  }
 }
 
 module "lacework_gcr_svc_account" {
@@ -48,10 +55,10 @@ resource "google_project_service" "required_apis_for_gcr_integration" {
 
 // Role(s) for a GCR integration
 resource "google_project_iam_member" "for_gcr_integration" {
-  for_each = toset(local.gcr_roles)
   project  = local.project_id
-  role     = each.value
+  role     = "roles/storage.objectViewer"
   member   = "serviceAccount:${local.service_account_json_key.client_email}"
+  count    = local.create_iam
 }
 
 # wait for X seconds for things to settle down in the GCP side
