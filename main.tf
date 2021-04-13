@@ -26,16 +26,6 @@ data "google_project" "selected" {
   project_id = var.project_id
 }
 
-data "google_iam_policy" "existing_policy" {
-  binding {
-    role = "roles/storage.objectViewer"
-
-    members = [
-      "serviceAccount:${local.service_account_json_key.client_email}",
-    ]
-  }
-}
-
 module "lacework_gcr_svc_account" {
   source               = "lacework/service-account/gcp"
   version              = "~> 1.0"
