@@ -1,7 +1,6 @@
 locals {
   resource_level       = "PROJECT"
   project_id           = data.google_project.selected.project_id
-  create_iam           = length(data.google_iam_policy.existing_policy) > 0 ? (var.use_existing_service_account ? 0 : 1) : 1
   service_account_name = var.use_existing_service_account ? (
     var.service_account_name
     ) : (
@@ -17,6 +16,9 @@ locals {
     containerregistry = "containerregistry.googleapis.com"
   }
   gcr_apis  = local.required_gcr_apis
+  gcr_roles = ["roles/storage.objectviewer"]
+  current_roles = split("\n", data.external.gcloud_project_iam_check_output.result["roles"])
+  required_roles = setsubtract(local.gcr_roles, local.current_roles)
 }
 
 resource "random_id" "uniq" {
@@ -25,16 +27,6 @@ resource "random_id" "uniq" {
 
 data "google_project" "selected" {
   project_id = var.project_id
-}
-
-data "google_iam_policy" "existing_policy" {
-  binding {
-    role = "roles/storage.objectViewer"
-
-    members = [
-      "serviceAccount:${local.service_account_json_key.client_email}",
-    ]
-  }
 }
 
 module "lacework_gcr_svc_account" {
@@ -53,12 +45,34 @@ resource "google_project_service" "required_apis_for_gcr_integration" {
   disable_on_destroy = false
 }
 
-// Role(s) for a GCR integration
+module "gcloud" {
+  source  = "terraform-google-modules/gcloud/google"
+  version = "~> 2.0"
+
+  platform = "linux"
+  additional_components = ["core"]
+  skip_download = true
+  upgrade = false
+
+  create_cmd_entrypoint  = "gcloud"
+  destroy_cmd_entrypoint = ""
+  enabled = var.use_existing_service_account
+}
+
+data "external" "gcloud_project_iam_check_output" {
+  program = ["/bin/bash", "-c", "response=$(${module.gcloud.create_cmd_bin} projects get-iam-policy ${local.project_id} --flatten='bindings[].members' --format='value(bindings.role)' --filter='${local.service_account_json_key.client_email}'); jq -n --arg v \"$response\" '{\"roles\": $v }'"]
+  depends_on = [
+    module.gcloud,
+    module.lacework_gcr_svc_account
+  ]
+}
+
 resource "google_project_iam_member" "for_gcr_integration" {
+  for_each = local.required_roles
   project  = local.project_id
-  role     = "roles/storage.objectViewer"
-  member   = "serviceAccount:${local.service_account_json_key.client_email}"
-  count    = local.create_iam
+  role     = each.value
+  member     = "serviceAccount:${local.service_account_json_key.client_email}"
+  depends_on = [data.external.gcloud_project_iam_check_output]
 }
 
 # wait for X seconds for things to settle down in the GCP side
@@ -66,7 +80,6 @@ resource "google_project_iam_member" "for_gcr_integration" {
 resource "time_sleep" "wait_time" {
   create_duration = var.wait_time
   depends_on      = [
-    module.lacework_gcr_svc_account,
     google_project_service.required_apis_for_gcr_integration,
     google_project_iam_member.for_gcr_integration
   ]
