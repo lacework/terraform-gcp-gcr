@@ -1,3 +1,11 @@
+variable "required_gcr_apis" {
+  type = map(any)
+  default = {
+    resourcemanager   = "cloudresourcemanager.googleapis.com"
+    containerregistry = "containerregistry.googleapis.com"
+  }
+}
+
 variable "project_id" {
   type        = string
   default     = ""

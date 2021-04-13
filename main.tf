@@ -11,11 +11,7 @@ locals {
     ) : (
     base64decode(module.lacework_gcr_svc_account.private_key)
   ))
-  required_gcr_apis = {
-    resourcemanager   = "cloudresourcemanager.googleapis.com"
-    containerregistry = "containerregistry.googleapis.com"
-  }
-  gcr_apis  = local.required_gcr_apis
+  gcr_apis  = var.required_gcr_apis
 }
 
 resource "random_id" "uniq" {

@@ -17,7 +17,7 @@ provider "google" {}
 
 module "lacework_gcr" {
   source  = "lacework/gcr/gcp"
-  version = "~> 0.1"
+  version = "~> 1.0"
 }
 ```
 

@@ -23,7 +23,7 @@ provider "lacework" {}
 
 module "lacework_svc_account" {
   source  = "lacework/gcr/gcp"
-  version = "~> 0.1"
+  version = "~> 1.0"
   
   lacework_integration_name = "Example GCR integration"
   registry_domain           = "us.gcr.io"
