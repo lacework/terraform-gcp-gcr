@@ -1,7 +1,6 @@
 locals {
   resource_level       = "PROJECT"
   project_id           = data.google_project.selected.project_id
-  create_iam           = length(data.google_iam_policy.existing_policy) > 0 ? (var.use_existing_service_account ? 0 : 1) : 1
   service_account_name = var.use_existing_service_account ? (
     var.service_account_name
     ) : (
@@ -58,7 +57,6 @@ resource "google_project_iam_member" "for_gcr_integration" {
   project  = local.project_id
   role     = "roles/storage.objectViewer"
   member   = "serviceAccount:${local.service_account_json_key.client_email}"
-  count    = local.create_iam
 }
 
 # wait for X seconds for things to settle down in the GCP side

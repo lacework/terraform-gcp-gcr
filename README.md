@@ -7,6 +7,15 @@
 
 A Terraform Module to integrate Google Container Registries (GCR) with Lacework.
 
+NOTE: When using an existing Service Account, Terraform cannot work out whether a role has already been applied.
+This mean when running the destroy step, existing roles may be removed from the Service Account. If this Service Account
+is managed by  another Terraform module, you can re-run apply on the other module and this will re-add the role. 
+
+Alternatively, it is possible to remove the offending roles from the state file before destroy, preventing the role(s) 
+from being removed. 
+
+e.g. `terraform state rm 'google_project_iam_binding.for_lacework_service_account'`
+
 ## Required Roles
 ```
 roles/storage.objectViewer
