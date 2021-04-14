@@ -12,6 +12,7 @@ TEST_CASES=(
   examples/default
   examples/environment-variables-gcr
   examples/existing-service-account-gcr
+  examples/configure-lacework-gcr-integration
 )
 
 log() {
