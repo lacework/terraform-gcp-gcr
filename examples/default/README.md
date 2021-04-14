@@ -17,6 +17,9 @@ provider "google" {}
 
 module "lacework_gcr" {
   source  = "lacework/gcr/gcp"
-  version = "~> 0.1"
+  version = "~> 1.0"
 }
 ```
+
+For detailed information on integrating Lacework with Google Container Registry see [Integrate Google Container Registry](https://support.lacework.com/hc/en-us/articles/360047770014-Integrate-Google-Container-Registry)
+

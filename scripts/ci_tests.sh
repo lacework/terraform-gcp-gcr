@@ -10,6 +10,8 @@ readonly project_name=terraform-aws-gcr
 
 TEST_CASES=(
   examples/default
+  examples/environment-variables-gcr
+  examples/existing-service-account-gcr
 )
 
 log() {
