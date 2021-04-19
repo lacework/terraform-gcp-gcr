@@ -193,6 +193,10 @@ generate_release_notes() {
 
 push_release() {
   log "commiting and pushing the release to github"
+  if [ "$CI" != "" ]; then
+    git config --global user.email $git_email 
+    git config --global user.name $git_user
+  fi
   git checkout -B release
   git commit -am "Release v$VERSION"
   git push origin release
