@@ -9,7 +9,7 @@
 set -eou pipefail
 
 readonly org_name=lacework
-readonly project_name=terraform-aws-gcr
+readonly project_name=terraform-gcp-gcr
 readonly git_user="Lacework Inc."
 readonly git_email="ops+releng@lacework.net"
 VERSION=$(cat VERSION)
@@ -115,36 +115,6 @@ publish_release() {
   create_release
 }
 
-open_pull_request() {
-  local _body="/tmp/pr.json"
-  local _pr="/tmp/pr.out"
-
-  log "opening GH pull request"
-  generate_pr_body "$_body"
-  curl -XPOST -H "Authorization: token $GITHUB_TOKEN" --data  "@$_body" \
-        https://api.github.com/repos/${org_name}/${project_name}/pulls > $_pr
-
-  _pr_url=$(jq -r .html_url $_pr)
-  log ""
-  log "It is time to review the release!"
-  log "    $_pr_url"
-}
-
-release_contains_features() {
-  latest_version=$(find_latest_version)
-  git log --no-merges --pretty="%s" ${latest_version}..main | grep "feat[:(]" >/dev/null
-  return $?
-}
-
-check_for_minor_version_bump() {
-  if release_contains_features; then
-    log "new feature detected, minor version bump"
-    echo $VERSION | awk -F. '{printf("%d.%d.0", $1, $2+1)}' > VERSION
-    VERSION=$(cat VERSION)
-    log "updated version to v$VERSION"
-  fi
-}
-
 update_changelog() {
   log "updating CHANGELOG.md"
   _changelog=$(cat CHANGELOG.md)
@@ -226,6 +196,36 @@ push_release() {
   git checkout -B release
   git commit -am "Release v$VERSION"
   git push origin release
+}
+
+open_pull_request() {
+  local _body="/tmp/pr.json"
+  local _pr="/tmp/pr.out"
+
+  log "opening GH pull request"
+  generate_pr_body "$_body"
+  curl -XPOST -H "Authorization: token $GITHUB_TOKEN" --data  "@$_body" \
+        https://api.github.com/repos/${org_name}/${project_name}/pulls > $_pr
+
+  _pr_url=$(jq .html_url $_pr)
+  log ""
+  log "It is time to review the release!"
+  log "    $_pr_url"
+}
+
+release_contains_features() {
+  latest_version=$(find_latest_version)
+  git log --no-merges --pretty="%s" ${latest_version}..main | grep "feat[:(]" >/dev/null
+  return $?
+}
+
+ check_for_minor_version_bump() {
+  if release_contains_features; then
+    log "new feature detected, minor version bump"
+    echo $VERSION | awk -F. '{printf("%d.%d.0", $1, $2+1)}' > VERSION
+    VERSION=$(cat VERSION)
+    log "updated version to v$VERSION"
+  fi
 }
 
 tag_release() {
