@@ -147,7 +147,7 @@ push_release() {
   fi
   git checkout -B release
   git commit -am "release: v$_version_no_tag"
-  git push origin release
+  git push origin release -f
 }
 
 open_pull_request() {
