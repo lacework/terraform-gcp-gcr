@@ -9,7 +9,7 @@
 set -eou pipefail
 
 # common release functions
-source release_helpers.sh
+source scripts/release_helpers.sh
 
 # Required Variables
 readonly org_name=lacework
