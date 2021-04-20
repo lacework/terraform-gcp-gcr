@@ -1,6 +1,9 @@
 # IDE files
 .idea
 
+# vim
+*.swp
+
 # Local .terraform directories
 **/.terraform/*
 
