@@ -69,5 +69,6 @@ resource "lacework_integration_gcr" "default" {
   limit_by_label   = var.limit_by_label
   limit_by_repos   = var.limit_by_repos
   limit_num_imgs   = var.limit_num_imgs
+  non_os_package_support = var.non_os_package_support
   depends_on = [time_sleep.wait_time]
 }

@@ -77,3 +77,9 @@ variable "limit_num_imgs" {
   default     = "5"
   description = "The maximum number of newest container images to assess per repository. Must be one of 5, 10, or 15. Defaults to 5."
 }
+
+variable "non_os_package_support" {
+  type = bool
+  default = true
+  description = "Whether or not the integration should check non-os packages in the container for vulnerabilities.  Defaults to true"
+}
