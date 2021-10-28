@@ -12,5 +12,5 @@ module "lacework_gcr" {
   limit_by_label            = "example*"
   limit_by_repos            = "foo,bar"
   limit_num_imgs            = "10"
-  non_os_package_support    = false
+  non_os_package_support    = true
 }

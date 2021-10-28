@@ -80,6 +80,6 @@ variable "limit_num_imgs" {
 
 variable "non_os_package_support" {
   type        = bool
-  default     = true
-  description = "Whether or not the integration should check non-os packages in the container for vulnerabilities.  Defaults to true"
+  default     = false
+  description = "Whether or not the integration should check non-os packages in the container for vulnerabilities.  Defaults to false"
 }
