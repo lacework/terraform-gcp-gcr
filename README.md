@@ -43,6 +43,7 @@ containerregistry.googleapis.com
 |limit_by_label|An image label to limit the assessment of images with matching label. If you specify limit_by_tag and limit_by_label limits, they function as an AND. Supported field input are mytext*mytext, mytext, mytext*, or mytext. Only one * wildcard is supported.|string|*|false|
 |limit_by_repos|A comma-separated list of repositories to assess. This should be defined as a string. (without spaces recommended)|string|""|false|
 |limit_num_imgs|The maximum number of newest container images to assess per repository. Must be one of 5, 10, or 15.|string|5|false|
+|non_os_package_support|Whether or not the integration should check non-os packages in the container for vulnerabilities. Defaults to false. |bool|false|false|
 
 ## Outputs
 
