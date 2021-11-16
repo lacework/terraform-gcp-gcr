@@ -54,22 +54,22 @@ variable "registry_domain" {
   description = "The GCR domain, which specifies the location where you store the images. Supported domains are gcr.io, us.gcr.io, eu.gcr.io, or asia.gcr.io. Defaults to gcr.io."
 }
 
-variable "limit_by_tag" {
-  type        = string
-  default     = "*"
-  description = "An image tag to limit the assessment of images with matching tag. If you specify limit_by_tag and limit_by_label limits, they function as an AND. Supported field input are mytext*mytext, mytext, mytext*, or mytext. Only one * wildcard is supported. Defaults to *."
+variable "limit_by_tags" {
+  type        = list(string)
+  default     = []
+  description = "A list of tags to limit the assessment of images with matching tags. If you specify limit_by_tags and limit_by_label limits, they function as an AND."
 }
 
-variable "limit_by_label" {
-  type        = string
-  default     = "*"
-  description = "An image label to limit the assessment of images with matching label. If you specify limit_by_tag and limit_by_label limits, they function as an AND. Supported field input are mytext*mytext, mytext, mytext*, or mytext. Only one * wildcard is supported. Defaults to *."
+variable "limit_by_labels" {
+  type        = map(string)
+  default     = {}
+  description = "A key based map of image labels to limit the assessment of images with matching labels. If you specify limit_by_tags and limit_by_label limits, they function as an AND."
 }
 
-variable "limit_by_repos" {
-  type        = string
-  default     = ""
-  description = "A comma-separated list of repositories to assess. This should be defined as a string. (without spaces recommended)"
+variable "limit_by_repositories" {
+  type        = list(string)
+  default     = []
+  description = "A list of repositories to assess"
 }
 
 variable "limit_num_imgs" {
