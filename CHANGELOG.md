@@ -1,4 +1,4 @@
-# v1.1.1
+# v2.0.0
 
 ## Other Changes
 * chore: Update deprecated attributes, limit_by_labels, limit_by_tags, limit_by_repositories (Darren Murray)([de33262](https://github.com/lacework/terraform-gcp-gcr/commit/de33262c857bcbb89eca89afd8cba34dd769d606))
