@@ -65,9 +65,9 @@ resource "lacework_integration_gcr" "default" {
     client_email   = local.service_account_json_key.client_email
     private_key    = local.service_account_json_key.private_key
   }
-  limit_by_tag           = var.limit_by_tag
-  limit_by_label         = var.limit_by_label
-  limit_by_repos         = var.limit_by_repos
+  limit_by_tags          = var.limit_by_tags  
+  limit_by_labels        = var.limit_by_labels   
+  limit_by_repositories  = var.limit_by_repositories
   limit_num_imgs         = var.limit_num_imgs
   non_os_package_support = var.non_os_package_support
   depends_on             = [time_sleep.wait_time]
