@@ -1,10 +1,6 @@
 # Release Notes
-Another day, another release. These are the release notes for the version `v1.1.0`.
+Another day, another release. These are the release notes for the version `v2.0.0`.
 
-## Features
-* feat(variables): adding non_os_package_support option (#22) (Tim Frazier)([3391512](https://github.com/lacework/terraform-gcp-gcr/commit/33915129e3a88dcb6295b397ff270420dd52ba72))
-## Documentation Updates
-* docs: Add contributing documentation (#21) (Darren)([e0162ad](https://github.com/lacework/terraform-gcp-gcr/commit/e0162ad374b34d2441acaf31146cf579c48e552e))
 ## Other Changes
-* chore: version bump to v1.0.2-dev (Lacework)([64bb152](https://github.com/lacework/terraform-gcp-gcr/commit/64bb152f3100d8f56fe7373ed387f21a993f69a7))
-* ci: sign lacework-releng commits (#20) (Salim Afiune)([b361982](https://github.com/lacework/terraform-gcp-gcr/commit/b3619827486e86d2f61368bcc851cd3d9919ee8a))
+* chore: Update deprecated attributes, limit_by_labels, limit_by_tags, limit_by_repositories (Darren Murray)([de33262](https://github.com/lacework/terraform-gcp-gcr/commit/de33262c857bcbb89eca89afd8cba34dd769d606))
+* ci: version bump to v1.1.1-dev (Lacework)([6b83bea](https://github.com/lacework/terraform-gcp-gcr/commit/6b83beab38512a342a7661a0f810b0091f2c621f))
