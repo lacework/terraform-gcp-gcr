@@ -35,6 +35,7 @@ provider "lacework" {}
 module "lacework_svc_account" {
   source  = "lacework/gcr/gcp"
   version = "~> 1.0"
+  non_os_package_support = true
 
   use_existing_service_account = true
   service_account_name         = "my-service-account"
@@ -48,4 +49,4 @@ $ terraform init
 $ GOOGLE_CREDENTIALS=account.json GOOGLE_PROJECT=my-project terraform apply
 ```
 
-For detailed information on integrating Lacework with Google Container Registry see [Integrate Google Container Registry](https://support.lacework.com/hc/en-us/articles/360047770014-Integrate-Google-Container-Registry)
+For detailed information on integrating Lacework with Google Container Registry see [Integrate Google Container Registry](https://docs.lacework.com/integrate-google-container-registry)

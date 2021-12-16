@@ -4,7 +4,7 @@ provider "lacework" {}
 
 module "lacework_gcr" {
   source = "../../"
-
+  non_os_package_support = true
   # Provide an existing service account
   use_existing_service_account = true
   service_account_name         = "my-service-account"

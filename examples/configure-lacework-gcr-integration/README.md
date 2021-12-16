@@ -32,7 +32,7 @@ module "lacework_svc_account" {
   limit_by_labels           = {example: "example*"}
   limit_by_repositories     = ["foo", "bar"]
   limit_num_imgs            = "10"
-  non_os_package_support    = false
+  non_os_package_support    = true
 }
 ```
 
@@ -42,4 +42,4 @@ $ terraform init
 $ GOOGLE_CREDENTIALS=account.json GOOGLE_PROJECT=my-project terraform apply
 ```
 
-For detailed information on integrating Lacework with Google Container Registry see [Integrate Google Container Registry](https://support.lacework.com/hc/en-us/articles/360047770014-Integrate-Google-Container-Registry)
+For detailed information on integrating Lacework with Google Container Registry see [Integrate Google Container Registry](https://docs.lacework.com/integrate-google-container-registry)
