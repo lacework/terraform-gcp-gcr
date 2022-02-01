@@ -1,6 +1,7 @@
 # Release Notes
-Another day, another release. These are the release notes for the version `v2.0.0`.
+Another day, another release. These are the release notes for the version `v2.1.0`.
 
+## Features
+* feat: update non_os_package_support flag (#27) (Darren)([2d239b7](https://github.com/lacework/terraform-gcp-gcr/commit/2d239b778a2c3a81baafe883f32361589f268f42))
 ## Other Changes
-* chore: Update deprecated attributes, limit_by_labels, limit_by_tags, limit_by_repositories (Darren Murray)([de33262](https://github.com/lacework/terraform-gcp-gcr/commit/de33262c857bcbb89eca89afd8cba34dd769d606))
-* ci: version bump to v1.1.1-dev (Lacework)([6b83bea](https://github.com/lacework/terraform-gcp-gcr/commit/6b83beab38512a342a7661a0f810b0091f2c621f))
+* ci: version bump to v2.0.1-dev (Lacework)([3cd0af2](https://github.com/lacework/terraform-gcp-gcr/commit/3cd0af2471e8cdd877b017ca93b41cb8a4443f10))
