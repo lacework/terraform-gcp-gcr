@@ -1,7 +1,7 @@
 # Release Notes
-Another day, another release. These are the release notes for the version `v2.1.0`.
+Another day, another release. These are the release notes for the version `v2.2.0`.
 
 ## Features
-* feat: update non_os_package_support flag (#27) (Darren)([2d239b7](https://github.com/lacework/terraform-gcp-gcr/commit/2d239b778a2c3a81baafe883f32361589f268f42))
+* feat: update google provider version to 4.0 (#29) (Darren)([7cddd7f](https://github.com/lacework/terraform-gcp-gcr/commit/7cddd7f8d293fe0f91324da4420aa048b2b373a5))
 ## Other Changes
-* ci: version bump to v2.0.1-dev (Lacework)([3cd0af2](https://github.com/lacework/terraform-gcp-gcr/commit/3cd0af2471e8cdd877b017ca93b41cb8a4443f10))
+* ci: version bump to v2.1.1-dev (Lacework)([46bbdeb](https://github.com/lacework/terraform-gcp-gcr/commit/46bbdeb48ad3c93c8c587765d7388371b03e9e58))
