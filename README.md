@@ -44,6 +44,7 @@ containerregistry.googleapis.com
 |limit_by_repositories|A list of repositories to assess.|list(string)|""|false|
 |limit_num_imgs|The maximum number of newest container images to assess per repository. Must be one of 5, 10, or 15.|string|5|false|
 |non_os_package_support|Whether or not the integration should check non-os packages in the container for vulnerabilities. Defaults to true. |bool|true|false|
+|permission_on_bucket|Set roles/storage.objectViewer on the bucket level instead of the project. Defaults to false. |bool|false|false|
 
 ## Outputs
 
