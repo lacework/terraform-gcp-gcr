@@ -83,3 +83,10 @@ variable "non_os_package_support" {
   default     = true
   description = "Whether or not the integration should check non-os packages in the container for vulnerabilities.  Defaults to true"
 }
+
+variable "permission_on_bucket" {
+  type        = bool
+  default     = false # no breaking change
+  description = "Set roles/storage.objectViewer on the bucket level instead of the project"
+}
+
