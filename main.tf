@@ -40,9 +40,31 @@ resource "google_project_service" "required_apis_for_gcr_integration" {
 
 // Role(s) for a GCR integration
 resource "google_project_iam_member" "for_gcr_integration" {
+  count = var.permission_on_bucket ? 0 : 1
+
   project = local.project_id
   role    = "roles/storage.objectViewer"
   member  = "serviceAccount:${local.service_account_json_key.client_email}"
+}
+
+// Ensures that the Google Cloud Storage bucket that backs Google Container Registry exists. Creating this resource will create the backing bucket if it does not exist, or do nothing if the bucket already exists. Destroying this resource does NOT destroy the backing bucket.
+resource "google_container_registry" "registry" {
+  count = var.permission_on_bucket ? 1 : 0
+
+  project = local.project_id
+  # gcr.io      -> null (default location)
+  # eu.gcr.io   -> "EU"
+  # us.gcr.io   -> "US"
+  # asia.gcr.io -> "ASIA"
+  location = var.registry_domain == "gcr.io" ? null : upper(trimsuffix(var.registry_domain, ".gcr.io"))
+}
+
+resource "google_storage_bucket_iam_member" "registry_read" {
+  count = var.permission_on_bucket ? 1 : 0
+
+  bucket = google_container_registry.registry.0.id
+  role   = "roles/storage.objectViewer"
+  member = format("serviceAccount:%s", local.service_account_json_key.client_email)
 }
 
 # wait for X seconds for things to settle down in the GCP side
@@ -52,7 +74,8 @@ resource "time_sleep" "wait_time" {
   depends_on = [
     module.lacework_gcr_svc_account,
     google_project_service.required_apis_for_gcr_integration,
-    google_project_iam_member.for_gcr_integration
+    google_project_iam_member.for_gcr_integration,
+    google_storage_bucket_iam_member.registry_read,
   ]
 }
 
@@ -65,8 +88,8 @@ resource "lacework_integration_gcr" "default" {
     client_email   = local.service_account_json_key.client_email
     private_key    = local.service_account_json_key.private_key
   }
-  limit_by_tags          = var.limit_by_tags  
-  limit_by_labels        = var.limit_by_labels   
+  limit_by_tags          = var.limit_by_tags
+  limit_by_labels        = var.limit_by_labels
   limit_by_repositories  = var.limit_by_repositories
   limit_num_imgs         = var.limit_num_imgs
   non_os_package_support = var.non_os_package_support
