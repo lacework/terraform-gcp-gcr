@@ -35,7 +35,7 @@ containerregistry.googleapis.com
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.14 |
 | <a name="requirement_google"></a> [google](#requirement\_google) | >= 3.0.0, < 5.0.0 |
-| <a name="requirement_lacework"></a> [lacework](#requirement\_lacework) | ~> 0.3 |
+| <a name="requirement_lacework"></a> [lacework](#requirement\_lacework) | ~> 1.0 |
 | <a name="requirement_time"></a> [time](#requirement\_time) | ~> 0.6 |
 
 ## Providers
@@ -43,7 +43,7 @@ containerregistry.googleapis.com
 | Name | Version |
 |------|---------|
 | <a name="provider_google"></a> [google](#provider\_google) | >= 3.0.0, < 5.0.0 |
-| <a name="provider_lacework"></a> [lacework](#provider\_lacework) | ~> 0.3 |
+| <a name="provider_lacework"></a> [lacework](#provider\_lacework) | ~> 1.0 |
 | <a name="provider_random"></a> [random](#provider\_random) | n/a |
 | <a name="provider_time"></a> [time](#provider\_time) | ~> 0.6 |
 
