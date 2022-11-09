@@ -1,9 +1,10 @@
 # Release Notes
-Another day, another release. These are the release notes for the version `v2.3.0`.
+Another day, another release. These are the release notes for the version `v2.3.1`.
 
-## Features
-* feat: deprecate support for Terraform 0.12 and 0.13 (#33) (Darren)([5199822](https://github.com/lacework/terraform-gcp-gcr/commit/51998228cf27d0c2e6dbddb493d89043d2ac4196))
-* feat: allow setting permission at bucket level (#31) (Labesse Kévin)([7ff49f2](https://github.com/lacework/terraform-gcp-gcr/commit/7ff49f2aeeaed53c2684af88d6313496ffc7a04f))
+## Bug Fixes
+* fix: examples/ google constraint (#35) (Salim Afiune)([75fc89e](https://github.com/lacework/terraform-gcp-gcr/commit/75fc89e2318badc61a4913e46a556602c75b2745))
+## Documentation Updates
+* docs: update Lacework provider version in readme (#37) (Darren)([dd62b73](https://github.com/lacework/terraform-gcp-gcr/commit/dd62b731d3831e28bb3c9567334dda66f486e539))
 ## Other Changes
-* chore: update PR template (#32) (Darren)([6c2a5be](https://github.com/lacework/terraform-gcp-gcr/commit/6c2a5bea84a494975cb5e5ca15b225869389489f))
-* ci: version bump to v2.2.1-dev (Lacework)([002c537](https://github.com/lacework/terraform-gcp-gcr/commit/002c537ee6e412b711d58054dd6c5cabcf81ed0e))
+* chore: update Lacework provider version to v1 (#36) (Darren)([d1131a1](https://github.com/lacework/terraform-gcp-gcr/commit/d1131a121088d66e9bdb9205f0bcb2ea1099176b))
+* ci: version bump to v2.3.1-dev (Lacework)([9e4e393](https://github.com/lacework/terraform-gcp-gcr/commit/9e4e3938032db2a22c21727decf3a78b2f26ead5))
