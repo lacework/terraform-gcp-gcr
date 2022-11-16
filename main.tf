@@ -1,6 +1,6 @@
 locals {
   resource_level = "PROJECT"
-  project_id     = data.google_project.selected.project_id
+  project_id     = length(var.project_id) > 0 ? var.project_id : data.google_project.selected.project_id
   service_account_name = var.use_existing_service_account ? (
     var.service_account_name
     ) : (
@@ -18,9 +18,7 @@ resource "random_id" "uniq" {
   byte_length = 4
 }
 
-data "google_project" "selected" {
-  project_id = var.project_id
-}
+data "google_project" "selected" {}
 
 module "lacework_gcr_svc_account" {
   source               = "lacework/service-account/gcp"
