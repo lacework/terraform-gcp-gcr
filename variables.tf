@@ -66,7 +66,7 @@ variable "limit_by_labels" {
     value = string
   }))
   default     = []
-  description = "An list of objects with image labels to limit the assessment of images with matching labels. If you specify limit_by_tags and limit_by_label limits, they function as an AND."
+  description = "A list of objects with image labels to limit the assessment of images with matching labels. If you specify limit_by_tags and limit_by_label limits, they function as an AND."
 }
 
 variable "limit_by_repositories" {

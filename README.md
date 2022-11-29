@@ -70,7 +70,7 @@ containerregistry.googleapis.com
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_lacework_integration_name"></a> [lacework\_integration\_name](#input\_lacework\_integration\_name) | The integration name displayed in the Lacework UI. | `string` | `"TF GCR"` | no |
-| <a name="input_limit_by_labels"></a> [limit\_by\_labels](#input\_limit\_by\_labels) | An list of objects with image labels to limit the assessment of images with matching labels. If you specify limit\_by\_tags and limit\_by\_label limits, they function as an AND. | <pre>list(object({<br>    key   = string<br>    value = string<br>  }))</pre> | `null` | no |
+| <a name="input_limit_by_labels"></a> [limit\_by\_labels](#input\_limit\_by\_labels) | A list of objects with image labels to limit the assessment of images with matching labels. If you specify limit\_by\_tags and limit\_by\_label limits, they function as an AND. | <pre>list(object({<br>    key   = string<br>    value = string<br>  }))</pre> | `[]` | no |
 | <a name="input_limit_by_repositories"></a> [limit\_by\_repositories](#input\_limit\_by\_repositories) | A list of repositories to assess | `list(string)` | `[]` | no |
 | <a name="input_limit_by_tags"></a> [limit\_by\_tags](#input\_limit\_by\_tags) | A list of tags to limit the assessment of images with matching tags. If you specify limit\_by\_tags and limit\_by\_label limits, they function as an AND. | `list(string)` | `[]` | no |
 | <a name="input_limit_num_imgs"></a> [limit\_num\_imgs](#input\_limit\_num\_imgs) | The maximum number of newest container images to assess per repository. Must be one of 5, 10, or 15. Defaults to 5. | `string` | `"5"` | no |
