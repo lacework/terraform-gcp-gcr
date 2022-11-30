@@ -28,22 +28,21 @@ roles/storage.objectViewer
 cloudresourcemanager.googleapis.com
 containerregistry.googleapis.com
 ```
-
 ## Requirements
 
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.14 |
-| <a name="requirement_google"></a> [google](#requirement\_google) | >= 3.0.0, < 5.0.0 |
-| <a name="requirement_lacework"></a> [lacework](#requirement\_lacework) | ~> 1.0 |
+| <a name="requirement_google"></a> [google](#requirement\_google) | >= 4.4.0, < 5.0.0 |
+| <a name="requirement_lacework"></a> [lacework](#requirement\_lacework) | ~> 1.1 |
 | <a name="requirement_time"></a> [time](#requirement\_time) | ~> 0.6 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | >= 3.0.0, < 5.0.0 |
-| <a name="provider_lacework"></a> [lacework](#provider\_lacework) | ~> 1.0 |
+| <a name="provider_google"></a> [google](#provider\_google) | >= 4.4.0, < 5.0.0 |
+| <a name="provider_lacework"></a> [lacework](#provider\_lacework) | ~> 1.1 |
 | <a name="provider_random"></a> [random](#provider\_random) | n/a |
 | <a name="provider_time"></a> [time](#provider\_time) | ~> 0.6 |
 
@@ -51,7 +50,7 @@ containerregistry.googleapis.com
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_lacework_gcr_svc_account"></a> [lacework\_gcr\_svc\_account](#module\_lacework\_gcr\_svc\_account) | lacework/service-account/gcp | ~> 1.0 |
+| <a name="module_lacework_gcr_svc_account"></a> [lacework\_gcr\_svc\_account](#module\_lacework\_gcr\_svc\_account) | lacework/service-account/gcp | >= 1.2.1 |
 
 ## Resources
 
@@ -71,7 +70,7 @@ containerregistry.googleapis.com
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_lacework_integration_name"></a> [lacework\_integration\_name](#input\_lacework\_integration\_name) | The integration name displayed in the Lacework UI. | `string` | `"TF GCR"` | no |
-| <a name="input_limit_by_labels"></a> [limit\_by\_labels](#input\_limit\_by\_labels) | A key based map of image labels to limit the assessment of images with matching labels. If you specify limit\_by\_tags and limit\_by\_label limits, they function as an AND. | `map(string)` | `{}` | no |
+| <a name="input_limit_by_labels"></a> [limit\_by\_labels](#input\_limit\_by\_labels) | A list of objects with image labels to limit the assessment of images with matching labels. If you specify limit\_by\_tags and limit\_by\_label limits, they function as an AND. | <pre>list(object({<br>    key   = string<br>    value = string<br>  }))</pre> | `[]` | no |
 | <a name="input_limit_by_repositories"></a> [limit\_by\_repositories](#input\_limit\_by\_repositories) | A list of repositories to assess | `list(string)` | `[]` | no |
 | <a name="input_limit_by_tags"></a> [limit\_by\_tags](#input\_limit\_by\_tags) | A list of tags to limit the assessment of images with matching tags. If you specify limit\_by\_tags and limit\_by\_label limits, they function as an AND. | `list(string)` | `[]` | no |
 | <a name="input_limit_num_imgs"></a> [limit\_num\_imgs](#input\_limit\_num\_imgs) | The maximum number of newest container images to assess per repository. Must be one of 5, 10, or 15. Defaults to 5. | `string` | `"5"` | no |

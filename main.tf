@@ -22,7 +22,7 @@ data "google_project" "selected" {}
 
 module "lacework_gcr_svc_account" {
   source               = "lacework/service-account/gcp"
-  version              = "~> 1.0"
+  version              = ">= 1.2.1"
   create               = var.use_existing_service_account ? false : true
   service_account_name = local.service_account_name
   project_id           = local.project_id
@@ -87,9 +87,16 @@ resource "lacework_integration_gcr" "default" {
     private_key    = local.service_account_json_key.private_key
   }
   limit_by_tags          = var.limit_by_tags
-  limit_by_labels        = var.limit_by_labels
   limit_by_repositories  = var.limit_by_repositories
   limit_num_imgs         = var.limit_num_imgs
   non_os_package_support = var.non_os_package_support
-  depends_on             = [time_sleep.wait_time]
+
+  dynamic "limit_by_label" {
+    for_each = var.limit_by_labels
+    content {
+      key     = limit_by_label.value.key
+      value   = limit_by_label.value.value
+    }
+  }
+  depends_on = [time_sleep.wait_time]
 }
