@@ -28,6 +28,8 @@ roles/storage.objectViewer
 cloudresourcemanager.googleapis.com
 containerregistry.googleapis.com
 ```
+
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -91,3 +93,4 @@ containerregistry.googleapis.com
 |------|-------------|
 | <a name="output_service_account_name"></a> [service\_account\_name](#output\_service\_account\_name) | The Service Account name |
 | <a name="output_service_account_private_key"></a> [service\_account\_private\_key](#output\_service\_account\_private\_key) | The private key in JSON format, base64 encoded |
+<!-- END_TF_DOCS -->
