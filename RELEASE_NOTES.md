@@ -1,6 +1,6 @@
 # Release Notes
-Another day, another release. These are the release notes for the version `v2.3.6`.
+Another day, another release. These are the release notes for the version `v2.3.7`.
 
 ## Other Changes
-* chore: set local var module name (#50) (Darren)([06f870e](https://github.com/lacework/terraform-gcp-gcr/commit/06f870ea0b4f7614b7360f49cd764392519b3698))
-* ci: version bump to v2.3.6-dev (Lacework)([fb78779](https://github.com/lacework/terraform-gcp-gcr/commit/fb78779969256a19c0ee0016f69c791cee807416))
+* chore: allow use of gcloud provider version 5 (#52) (Timothy MacDonald)([eda9132](https://github.com/lacework/terraform-gcp-gcr/commit/eda9132dedda6e379ee21807597ac1bdab81c207))
+* ci: version bump to v2.3.7-dev (Lacework)([5610f90](https://github.com/lacework/terraform-gcp-gcr/commit/5610f907a88a76a593b111250c5d47520e242698))
